@@ -1,12 +1,11 @@
-class BoardCase
-  attr_accessor :case, :id_case
+class BoardCase                     # Classe qui crée une nouvelle session de jeu
 
-  def initialize(id_case)
-      @case = " "
-      @id_case = id_case
+  attr_accessor :name, :value
+
+  def initialize(name, value)
+    @name = name.to_i
+    @value = value
   end
 
-  def change_case(symbol)
-      @case = symbol
-  end
 end
+

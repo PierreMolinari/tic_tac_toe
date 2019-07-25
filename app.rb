@@ -1,17 +1,8 @@
-require 'bundler'
-Bundler.require
+require 'color_text'
+require_relative 'lib/app/board'       # On effectue le lien avec les fichiers de chaque Classe.
+require_relative 'lib/app/board_case'
+require_relative 'lib/app/game'
+require_relative 'lib/app/player'
 
-#require son dans morpion/lib/..
-$:.unshift File.expand_path("./../lib", __FILE__)
-require 'app/board'
-require 'app/board_case'
-require 'app/player'
-require 'app/game'
-require 'app/application'
-require 'views/show'
-require 'views/done'
-
-
-Application.new.perform
-binding pry
- 
+game = Game.new                        # On crée une nouvelle partie.
+game.go    

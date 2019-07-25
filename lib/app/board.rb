@@ -1,50 +1,86 @@
 class Board
-  attr_accessor :board, :case
 
-  def initialize
-      @board = []
-      @board = 9.times.map {|i| @board[i] = BoardCase.new(i)}
-  end
-
-  def show_board
-      puts " #{@board[0].case} | #{@board[1].case} | #{@board[2].case}"
-      puts " #{@board[3].case} | #{@board[4].case} | #{@board[5].case}"
-      puts " #{@board[6].case} | #{@board[7].case} | #{@board[8].case}"
-  end
-
-  def case_change(symbol, location)
-      if case_can_be_change(location)
-          @board[location].change_case(symbol)
-      else
-          puts "pas la place pour toi"
-      end
-  end
-
-  def case_can_be_change(location)
-      true if @board[location].case == ' '
-  end
+    attr_accessor :cases, :choice
   
-  def victory?
-      if test_victory(0, 1, 2)
-          return true
-      elsif test_victory(3, 4, 5)
-          return true
-      elsif test_victory(6, 7, 8)
-          return true
-      elsif test_victory(0, 3, 6)
-          return true         
-      elsif test_victory(1, 4, 7)
-          return true
-      elsif test_victory(2, 5, 8)
-          return true
-      elsif test_victory(0, 4, 8)
-          return true
-      elsif test_victory(2, 4, 6)
-          return true
+    def initialize                                                                    # On initialise 9 cases jouables à la création d'une board
+      bc_1 = BoardCase.new(1, "1")
+      bc_2 = BoardCase.new(2, "2")
+      bc_3 = BoardCase.new(3, "3")
+      bc_4 = BoardCase.new(4, "4")
+      bc_5 = BoardCase.new(5, "5")
+      bc_6 = BoardCase.new(6, "6")
+      bc_7 = BoardCase.new(7, "7")
+      bc_8 = BoardCase.new(8, "8")
+      bc_9 = BoardCase.new(9, "9")
+      @cases = [bc_1, bc_2, bc_3, bc_4, bc_5, bc_6, bc_7, bc_8, bc_9]                 # On les rentre dans un tableau compilé
+    end
+  
+    def show                                                                          # Permet d'afficher toujours le même plateau de jeau avec des mises à jour des valeurs contenues
+      puts "\n     |     |     "
+      puts "  #{cases[0].value}  |  #{cases[1].value}  |  #{cases[2].value}  "
+      puts "_____|_____|_____"
+      puts "     |     |     "
+      puts "  #{cases[3].value}  |  #{cases[4].value}  |  #{cases[5].value}  "
+      puts "_____|_____|_____"
+      puts "     |     |     "
+      puts "  #{cases[6].value}  |  #{cases[7].value}  |  #{cases[8].value}  "
+      puts "     |     |     "
+    end
+  
+    def get_player_choice(choice, pmark, player)                                      # On recoit la volonté de jeu du player appelé, sa marque et son nom et on appelle la fonction de changement de valeur d'une case
+      self.set_case_value(choice, pmark, player)
+    end
+  
+    def set_case_value(choice, pmark, player)                                         # On change la valeur de la case choisie par la marque du joueur, en ajoutant de la couleur
+      if is_playable?(@cases[choice-1])
+        if pmark == "O"
+          @cases[choice-1].value = pmark.red
+        else
+          @cases[choice-1].value = pmark.green
+        end
+      else
+        puts "Taken ! Please try again !"                                             # Appelle la fonction qui check si la case a déjà été modifiée
+        choice = (gets.chomp).to_i
+        self.set_case_value(choice, pmark, player)
       end
+    end
+  
+    def is_playable?(cell)                                                            # Regarde si la case est deja modifiée
+      if cell.value.to_i == cell.name
+        return true
+      else
+        return false
+      end
+    end
+  
+  
+    def victory(player)                                                               # Recense toutes les conditions de victoire (8 au total)
+  
+      if @cases[0].value == @cases[1].value && @cases[1].value == @cases[2].value
+        return true
+  
+      elsif @cases[3].value == @cases[4].value && @cases[4].value == @cases[5].value
+        return true
+  
+      elsif @cases[6].value == @cases[7].value && @cases[7].value == @cases[8].value
+        return true
+  
+      elsif @cases[0].value == @cases[3].value && @cases[3].value == @cases[6].value
+        return true
+  
+      elsif @cases[1].value == @cases[4].value && @cases[4].value == @cases[7].value
+        return true
+  
+      elsif @cases[2].value == @cases[5].value && @cases[5].value == @cases[8].value
+        return true
+  
+      elsif @cases[2].value == @cases[4].value && @cases[4].value == @cases[6].value
+        return true
+  
+      elsif @cases[0].value == @cases[4].value && @cases[4].value == @cases[8].value
+        return true
+  
+      end
+    end
+  
   end
-
-  def test_victory(a, b, c)
-      @board[a].case == @board[b].case && @board[b].case == @board[c].case
-  end
-end
