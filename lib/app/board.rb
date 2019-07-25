@@ -2,7 +2,8 @@ class Board
 
     attr_accessor :cases, :choice
   
-    def initialize                                                                    # On initialise 9 cases jouables à la création d'une board
+    def initialize
+        # On initialise 9 cases jouables à la création d'une board
       bc_1 = BoardCase.new(1, "1")
       bc_2 = BoardCase.new(2, "2")
       bc_3 = BoardCase.new(3, "3")
@@ -12,10 +13,10 @@ class Board
       bc_7 = BoardCase.new(7, "7")
       bc_8 = BoardCase.new(8, "8")
       bc_9 = BoardCase.new(9, "9")
-      @cases = [bc_1, bc_2, bc_3, bc_4, bc_5, bc_6, bc_7, bc_8, bc_9]                 # On les rentre dans un tableau compilé
+      @cases = [bc_1, bc_2, bc_3, bc_4, bc_5, bc_6, bc_7, bc_8, bc_9]
     end
   
-    def show                                                                          # Permet d'afficher toujours le même plateau de jeau avec des mises à jour des valeurs contenues
+    def show
       puts "\n     |     |     "
       puts "  #{cases[0].value}  |  #{cases[1].value}  |  #{cases[2].value}  "
       puts "_____|_____|_____"
@@ -27,11 +28,12 @@ class Board
       puts "     |     |     "
     end
   
-    def get_player_choice(choice, pmark, player)                                      # On recoit la volonté de jeu du player appelé, sa marque et son nom et on appelle la fonction de changement de valeur d'une case
+    def get_player_choice(choice, pmark, player)
       self.set_case_value(choice, pmark, player)
     end
   
-    def set_case_value(choice, pmark, player)                                         # On change la valeur de la case choisie par la marque du joueur, en ajoutant de la couleur
+    def set_case_value(choice, pmark, player)
+        # On change la valeur de la case choisie par la marque du joueur, en ajoutant de la couleur
       if is_playable?(@cases[choice-1])
         if pmark == "O"
           @cases[choice-1].value = pmark.red
@@ -39,13 +41,14 @@ class Board
           @cases[choice-1].value = pmark.green
         end
       else
-        puts "Taken ! Please try again !"                                             # Appelle la fonction qui check si la case a déjà été modifiée
+        puts "Occupé! choisie une autre case !"
         choice = (gets.chomp).to_i
         self.set_case_value(choice, pmark, player)
       end
     end
   
-    def is_playable?(cell)                                                            # Regarde si la case est deja modifiée
+    def is_playable?(cell)
+        # Regarde si la case est deja modifiée
       if cell.value.to_i == cell.name
         return true
       else
@@ -54,7 +57,8 @@ class Board
     end
   
   
-    def victory(player)                                                               # Recense toutes les conditions de victoire (8 au total)
+    def victory(player)
+        # Toutes les conditions de victoire (8 au total)
   
       if @cases[0].value == @cases[1].value && @cases[1].value == @cases[2].value
         return true
