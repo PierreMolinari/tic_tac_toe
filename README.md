@@ -2,11 +2,11 @@
 
 Veuillez cloner ce repo sur votre machine avec la commande suivante :
 
- ** $ git clone https://github.com/PierreMolinari/tic_tac_toe **
+ **$ git clone https://github.com/PierreMolinari/tic_tac_toe**
 
 Ensuite, le jeu utilise une gem supplémentaire pour agrémenter un peu le jeu : color_text. Pour cela, effectuez un :
 
- ** $ bundle install **
+ **$ bundle install**
 
 # Fonctionnement du jeu
 
