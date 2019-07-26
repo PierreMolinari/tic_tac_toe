@@ -13,10 +13,10 @@ class Player
       end
     
       def infos
-        puts "\nPlease, put the player name :"
+        puts "\nS'il te plait, entre ton nom :"
         @pname = ((gets.chomp).to_s).capitalize
         if @@player == 1 && @@mark == ""
-          puts "\nWhich mark do you want ? X or O ?"
+          puts "\nChoisie tes pions ? X or O ?"
           while @pmark != "X" && @pmark != "O" do
              @pmark = (gets.chomp).to_s.capitalize
           end
@@ -26,7 +26,7 @@ class Player
           @pmark = "X"
         end
         @@mark = @pmark
-        puts "#{@pname} will play as #{@pmark} !"
+        puts "#{@pname} va jouer en tant que #{@pmark} !"
       end
     
     end

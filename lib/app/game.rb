@@ -13,7 +13,7 @@ class Game
     end
   
     def go
-      puts "Let's go !"
+      puts "C'est parti !"
       i = 0
       loop do
         break if i > 8
@@ -22,7 +22,7 @@ class Game
         i +=1
         if @@victory
             # Win du player 1, break de la loop si besoin et affiche la board finie
-          puts "\nThere is a winner :"
+          puts "\nIl y a un gagnant :"
           @board_game.show
           puts "\nGood game #{@p_one.pname} !"
           puts "#{@p_two.pname}, T'es nul!"
@@ -33,7 +33,7 @@ class Game
         i +=1
         if @@victory
             # Win du player 2, break de la loop si besoin et affiche la board finie
-          puts "\nThere is a winner :"
+          puts "\nIl y a un gagnant :"
           @board_game.show
           puts "\nGood game #{@p_two.pname} !"
           puts "#{@p_one.pname}, T'es nul! "
