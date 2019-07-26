@@ -1,4 +1,4 @@
-##Pour faire fonctionner ce programme:
+## Pour faire fonctionner ce programme:
 
 Veuillez cloner ce repo sur votre machine avec la commande suivante :
 
@@ -8,7 +8,7 @@ Ensuite, le jeu utilise une gem supplémentaire pour agrémenter un peu le jeu :
 
   $ bundle install
 
-##Fonctionnement du jeu
+## Fonctionnement du jeu
 
 Lors du lancement du jeu, celui-ci demande le pseudo du joueur qui jouera en premier, et lui demande de choisir entre les marques X ou O.
 
@@ -23,4 +23,4 @@ Lancement du jeu ! Chacun son tour, chaque joueur sélectionne une case de 1 à 
 Le nombre de parties rémportées est comptabilisé à chaque lancement du jeu !
 Conditions de test du jeu pour les corrections
 
-##Lancez le fichier app.rb à la racine du repo.
+## Lancez le fichier app.rb à la racine du repo.
